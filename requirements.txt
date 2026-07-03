@@ -1,0 +1,11 @@
+# Core service
+fastapi>=0.110
+uvicorn[standard]>=0.29
+python-multipart>=0.0.9      # required for file uploads
+cryptography>=42.0
+PyYAML>=6.0
+
+# File-type detection (optional but recommended).
+# On Windows install the bundled binaries build:
+python-magic-bin>=0.4.14 ; platform_system == "Windows"
+python-magic>=0.4.27 ; platform_system != "Windows"

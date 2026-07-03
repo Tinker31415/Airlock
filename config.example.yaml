@@ -1,0 +1,49 @@
+# ---- secure-ingest configuration -------------------------------------------
+# Copy this file to  config.yaml  and edit the values below.
+
+# Where all state lives (quarantine, vault, keys, logs, manifest.db).
+# Relative paths are resolved next to this project folder.
+storage_dir: storage
+
+# Shared secret required to upload. Generate a strong random one, e.g.:
+#   python -c "import secrets; print(secrets.token_urlsafe(32))"
+upload_token: CHANGE_ME
+
+# Local bind for the ingress server. Keep it on localhost; the Cloudflare Tunnel
+# (or Tailscale) is what exposes it to your other devices.
+host: 127.0.0.1
+port: 8080
+
+# Reject uploads larger than this (megabytes).
+max_upload_mb: 512
+
+# If the malware scanner cannot run, HOLD files for review instead of releasing.
+# Strongly recommended: true.
+fail_closed: true
+
+# Retention: anything left in the "waiting for clearance" (held) state longer
+# than this many days is permanently, securely purged by the janitor.
+held_retention_days: 15
+
+# Subprojects a file can be addressed to. These should match the folders under
+# your codework project. A file addressed here is only decryptable with that
+# subproject's derived key.
+subprojects:
+  - "BLR - open data mining"
+  - "Suj - experiment 1"
+  - "Hanoi"
+  - "classifier"
+
+# Extra extensions to always hold for manual review (executables/scripts are
+# already held automatically).
+always_hold_extensions:
+  - ".iso"
+  - ".img"
+
+clamav:
+  # "clamscan" = call the clamscan CLI per file (simplest).
+  # "clamd"    = talk to a running clamd daemon over TCP (faster for volume).
+  mode: clamscan
+  clamscan_path: clamscan     # or full path e.g. C:\Program Files\ClamAV\clamscan.exe
+  host: 127.0.0.1
+  port: 3310

@@ -1,0 +1,21 @@
+# --- Airlock: never commit secrets or ingested data ---
+config.yaml
+storage/
+*.key
+keys/
+badhashes.txt
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

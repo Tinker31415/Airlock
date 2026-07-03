@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "airlock-ingest"
+version = "1.0.0"
+description = "Quarantined, malware-scanned, encrypted file drop for subprojects"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "python-multipart>=0.0.9",
+    "cryptography>=42.0",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+airlock = "airlock.__main__:main"
+
+[tool.setuptools]
+packages = ["airlock"]
