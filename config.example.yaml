@@ -30,7 +30,6 @@ held_retention_days: 15
 # subproject's derived key.
 subprojects:
   - "BLR - open data mining"
-  - "Suj - experiment 1"
   - "Hanoi"
   - "classifier"
 
